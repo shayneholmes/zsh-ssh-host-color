@@ -2,7 +2,8 @@
 # Fork from https://gist.github.com/773849
 
 
-function _ssh_host_color() (
+_ssh_host_color() {
+  emulate -L zsh # so traps don't percolate up
   local oldcolor
   oldcolor=$_iterm2colors_current
   if [[ "$*" =~ '(^| |\.)(engserv-co1|co1|iad1|ca1|az1|eu2)($| |\.)' ]]; then
@@ -14,17 +15,17 @@ function _ssh_host_color() (
   trap "_iterm2colors_apply '$oldcolor'" EXIT
   $@
   _iterm2colors_apply "$oldcolor"
-)
+}
 
-function _ssh_color() {
+_ssh_color() {
   _ssh_host_color ssh $@
 }
 
-function _sshrc_color() {
+_sshrc_color() {
   _ssh_host_color sshrc $@
 }
 
-function _ssh_complete() {
+_ssh_complete() {
   local service=ssh
   _ssh "$@"
 }
