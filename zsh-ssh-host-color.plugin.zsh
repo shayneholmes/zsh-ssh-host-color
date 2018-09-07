@@ -9,7 +9,7 @@ _environment_pattern[stage]='(^| |\.)(g1|g1-iad)($| |\.)'
 _environment_pattern[dev]='(^| |\.)(a1|a1-prv|b1|b1-prv)($| |\.)'
 
 _color_from_environment[prod]="Homebrew"
-_color_from_environment[stage]="Earthsong"
+_color_from_environment[stage]="AdventureTime"
 _color_from_environment[dev]="Earthsong"
 
 _color_from_params() {
