@@ -26,22 +26,22 @@ _dev_dcs=(
   b1-prv
 )
 
-typeset -xA _colorschemes
-_colorschemes[prod]="Homebrew"
-_colorschemes[stage]="AdventureTime"
-_colorschemes[dev]="Earthsong"
-
-_get_pattern_from_dcs() {
-  _pattern=$(printf "$@" | sed "s/ /|/g")
-  printf '(^| |\.)(%s)($| |\.)' "$_pattern"
-}
-
-typeset -xA _environment_pattern
-_environment_pattern[prod]=$(_get_pattern_from_dcs "$_prod_dcs")
-_environment_pattern[stage]=$(_get_pattern_from_dcs "$_stage_dcs")
-_environment_pattern[dev]=$(_get_pattern_from_dcs "$_dev_dcs")
-
 _color_from_params() {
+  typeset -xA _colorschemes
+  _colorschemes[prod]="Homebrew"
+  _colorschemes[stage]="AdventureTime"
+  _colorschemes[dev]="Earthsong"
+
+  _get_pattern_from_dcs() {
+    _pattern=$(printf "$@" | sed "s/ /|/g")
+    printf '(^| |\.)(%s)($| |\.)' "$_pattern"
+  }
+
+  typeset -xA _environment_pattern
+  _environment_pattern[prod]=$(_get_pattern_from_dcs "$_prod_dcs")
+  _environment_pattern[stage]=$(_get_pattern_from_dcs "$_stage_dcs")
+  _environment_pattern[dev]=$(_get_pattern_from_dcs "$_dev_dcs")
+
   setopt aliases
   emulate -L zsh # so traps don't percolate up
   local oldcolor
