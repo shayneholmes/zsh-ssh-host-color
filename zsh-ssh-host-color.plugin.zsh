@@ -26,6 +26,10 @@ _dev_dcs=(
   b1-prv
 )
 
+_mss=(
+  mss
+)
+
 _color_from_params() {
   # only color switch if on tty
   if [ ! -t 1 ]; then "$@"; return; fi
@@ -34,6 +38,7 @@ _color_from_params() {
   _colorschemes[prod]="Homebrew"
   _colorschemes[stage]="AdventureTime"
   _colorschemes[dev]="Earthsong"
+  _colorschemes[mss]="Borland"
 
   _get_pattern_from_dcs() {
     _pattern=$(printf "$@" | sed "s/ /|/g")
@@ -44,6 +49,7 @@ _color_from_params() {
   _environment_pattern[prod]=$(_get_pattern_from_dcs "$_prod_dcs")
   _environment_pattern[stage]=$(_get_pattern_from_dcs "$_stage_dcs")
   _environment_pattern[dev]=$(_get_pattern_from_dcs "$_dev_dcs")
+  _environment_pattern[mss]=$(_get_pattern_from_dcs "$_mss")
 
   setopt aliases
   emulate -L zsh # so traps don't percolate up
