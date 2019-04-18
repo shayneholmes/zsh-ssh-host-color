@@ -27,6 +27,9 @@ _dev_dcs=(
 )
 
 _color_from_params() {
+  # only color switch if on tty
+  if [ ! -t 1 ]; then "$@"; return; fi
+
   typeset -xA _colorschemes
   _colorschemes[prod]="Homebrew"
   _colorschemes[stage]="AdventureTime"
